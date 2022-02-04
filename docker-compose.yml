@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  craftsmanshipstore.web:
+    image: ${DOCKER_REGISTRY-}craftsmanshipstoreweb
+    build:
+      context: .
+      dockerfile: CraftsmanshipStore.Web/Dockerfile
+    depends_on:
+      - craftsmanshipstore.productapi
+      - mysql
+
+  craftsmanshipstore.productapi:
+    image: ${DOCKER_REGISTRY-}craftsmanshipstoreproductapi
+    build:
+      context: .
+      dockerfile: CraftsmanshipStore.ProductApi/Dockerfile
